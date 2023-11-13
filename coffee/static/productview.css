@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Outfit:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+
+body {
+    background-color: #693F33;
+    margin: 0;
+}
+
+.container {
+    position: relative;
+}
+
+.product-details .product {
+    background-color: #F2E8D4;
+    margin: 2em;
+    padding: 2em;
+    text-align: center;
+}
+
+.product-details .name {
+    font-family: 'Inder';
+    font-size: 10px;
+}
+
+.product-details .description {
+    font-family: 'Dancing Script';
+}
+
+.product .line {
+    background-color: black;
+    padding:  0 5em;
+    height: 2px;
+    margin-top: 1.5em;
+}
+
+.product-datas ul {
+    display: flex;
+    justify-content: center;
+    background-color: #2E1A17;
+    padding: 1em;
+    gap: 1em;
+    border-radius: 10px;
+}
+
+.product-datas .datas input {
+    background: #80d2cd;
+    border: none;
+    text-align: center;
+    color: black;
+    width: 7em;
+    border-radius: 10px;
+}
+
+.product-datas .datas select {
+    background: #FFDC62;
+    border: none;
+    text-align: center;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.product-datas .datas p {
+    color: white;
+    font-family: 'Inder';
+}
+
+.product-datas .datas button {
+    background-color: #F2E8D4;
+    border: none;
+    font-family: 'Inder';
+    height: 2em;
+    width: 8em;
+    text-align: center;
+}
+
+#total {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: #2E1A17;
+    color: white;
+    font-family: 'Inder';
+}
+
+.comment-container {
+    background-color: #F2E8D4;
+    margin: 2em;
+    border-radius: 1em;
+    font-family: 'Outfit', sans-serif;
+}
+
+.sub-comment-container {
+    padding: 1em;
+}
+
+.sub-comment-container input {
+    background-color: white;
+    padding: 0.5em 2em;
+    border-radius: 2em;
+    font-family: 'Outfit', sans-serif;
+    border: none;
+}
+
+.sub-comment-container button {
+    color: white;
+    background-color: #2E1A17;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    border-radius: 2em;
+    margin-top: 1em;
+    height: 2.5em;
+    width: 12em;
+}
+
+.comments {
+    background-color: white;
+    margin-top: 1.5em;
+    padding: 0.5em 1em;
+    font-size: 12px;
+    border-radius: 1em;
+}
+
+.comments .username {
+    color: #0085FF;
+    margin-bottom: -0.5em;
+}

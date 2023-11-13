@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{% static 'admin.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <div class="contents">
+          <div class="greetings">
+            <p>
+              WELCOME BACK <br />
+              <span class="name"> Heinrich Pontanoza</span>
+            </p>
+          </div>
+
+          <div class="image">
+            <img src="{% static 'mhyr.jpg' %}" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard">
+        <div class="totalincome">
+          <div class="total-content">
+            <div class="total-income">
+              <p>Total Income</p>
+            </div>
+            <div class="total-price">
+              <p>{{totalIncome}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="total-users">
+          <div class="total-user">
+            <p>Total Users</p>
+            <div class="user-count">
+              <p>{{userCount}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="total-purchases">
+          <div class="total-purchase">
+            <p>Total Purchase</p>
+          </div>
+          <div class="purchase-count">
+            <p>{{totalpurch}}</p>
+          </div>
+        </div>
+
+        <div class="percent-purchases">
+          <div class="percent-purchase">
+            <p>Purchase Percentage</p>
+          </div>
+          <div class="purchase-percentage">
+            <p>120%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-checked-out">
+        {% for order in ordered %}
+        <div class="list-of-user">
+          <div class="user-out">
+            <p>{{order.full_name}} checked out.</p>
+            <a href="{% url 'whoordered' order.full_name %}"
+              ><button>View</button></a
+            >
+          </div>
+
+          <!-- <div class="user-out done">
+            <p>alfonzo checked out.</p>
+            <button type="submit">View</button>
+          </div> -->
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

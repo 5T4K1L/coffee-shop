@@ -1,0 +1,171 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{product.name}}</title>
+    <link rel="stylesheet" href="{% static 'productview.css' %}" />
+    <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+    <script src="{% static 'js/productview.js' %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      {% for prod in product %}
+      <div class="navbar">
+        <div class="content">
+          <div class="logo">
+            <h1>Logo mo ang andine</h1>
+          </div>
+
+          <div class="links">
+            <div class="menu">
+              <a href="{% url 'menu' %}">
+                <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+
+            <div class="cart">
+              <a href="{% url 'cart' %}">
+                <img src="{% static 'cart-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-details">
+        <div class="product">
+          <div class="image">
+            <img
+              style="height: 20em"
+              src=" {{ prod.productImage.url }}"
+              alt=""
+            />
+          </div>
+
+          <div class="name">
+            <h1>{{ prod.name }}</h1>
+          </div>
+
+          <div class="description">{{ prod.description }}</div>
+
+          <div class="line"></div>
+
+          <form action="/add_to_cart">
+            {% csrf_token %}
+            <div class="product-datas">
+              <div class="datas">
+                <ul class="size-quantity">
+                  <input
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    placeholder="Quantity"
+                  />
+
+                  <select name="size" id="size">
+                    <option value="empty">------</option>
+                    <option value="small">
+                      Small | Php {{prod.smallprice}}
+                    </option>
+                    <option value="medium">
+                      Medium | Php {{prod.mediumprice}}
+                    </option>
+                    <option value="large">
+                      Large | Php {{ prod.largeprice }}
+                    </option>
+                  </select>
+                </ul>
+
+                <ul class="total-button">
+                  <input name="total" id="total" readonly placeholder="" />
+                  <input
+                    type="hidden"
+                    name="total_placeholder"
+                    id="totalPlaceholder"
+                    value=""
+                  />
+                  <input
+                    type="hidden"
+                    name="prod_id"
+                    value="{{prod.id}}"
+                    id="prod_id"
+                  />
+                  <button type="submit" id="add_to_cart">Add to Cart</button>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="comment-container">
+        <div class="sub-comment-container">
+          <div class="add-comment">
+            <form action="{% url 'addcomment' %}">
+              {% csrf_token %}
+              <input
+                type="hidden"
+                name="product_id"
+                value="{{prod.id}}"
+                id="product_id"
+              />
+              <input
+                name="addcomment"
+                type="text"
+                placeholder="Add Comment/Review"
+              />
+              <div class="button">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+
+          {% for com in comment %}
+          <div class="comments">
+            <p class="username">{{com.user}}</p>
+            <p class="description">{{com.comment}}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      function getTotal() {
+        const quantity = document.getElementById("quantity");
+        const quantityValue = quantity.value;
+        const size = document.getElementById("size");
+        const sizeValue = size.value;
+
+        const smallPrice = "{{ prod.smallprice }}";
+        const mediumPrice = "{{ prod.mediumprice }}";
+        const largePrice = "{{ prod.largeprice }}";
+
+        let total = 0;
+
+        if (sizeValue === "small") {
+          total = smallPrice * quantityValue;
+        } else if (sizeValue === "medium") {
+          total = mediumPrice * quantityValue;
+        } else if (sizeValue === "large") {
+          total = largePrice * quantityValue;
+        }
+
+        const totalElement = document.getElementById("total");
+        totalElement.placeholder = `Php ${total}`;
+
+        const totalPlaceholder = document.getElementById("totalPlaceholder");
+        totalPlaceholder.value = total;
+      }
+
+      quantity.addEventListener("change", getTotal);
+      size.addEventListener("change", getTotal);
+    </script>
+    {% endfor %}
+  </body>
+</html>

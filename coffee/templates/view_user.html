@@ -1,0 +1,65 @@
+{% load static %}
+
+<!-- <p>{{user.full_name}}</p>
+<p>{{user.contact_number}}</p>
+<p>{{user.full_address}}</p>
+<p>{{user.message}}</p>
+<p>{{user.total_price}}</p> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{user.full_name}}</title>
+    <link rel="stylesheet" href="{% static 'view_user.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <div class="contents">
+          <div class="greetings">
+            <p>
+              <span class="name">{{user.full_name}}'s Order</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <div class="order">
+          {% for order in order %}
+          <div class="orders">
+            <p class="price">{{order.price}}</p>
+            <p class="ordername">{{order.name}}</p>
+            <p class="quantity">x{{order.quantity}}</p>
+          </div>
+          {% endfor %}
+          <div class="total">
+            Total: <span class="total-price">{{user.total_price}}</span>
+          </div>
+        </div>
+
+        <div class="information-summary">
+          <h1>Information</h1>
+
+          <div class="name">
+            <p>Name: <span>{{user.full_name}}</span></p>
+          </div>
+
+          <div class="address">
+            <p>Address: <span>{{user.full_address}}</span></p>
+          </div>
+
+          <div class="phone">
+            <p>Phone: <span>{{user.contact_number}}</span></p>
+          </div>
+
+          <div class="message">
+            <p>Message: <span>{{user.message}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

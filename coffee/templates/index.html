@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heins' Coffee</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}" />
+    <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="content">
+          <div class="logo">
+            <h1>Logo mo ang andine</h1>
+          </div>
+
+          <div class="links">
+            <div class="menu">
+              <a href="{% url 'menu' %}">
+                <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+
+            <div class="cart">
+              <a href="{% url 'cart' %}">
+                <img src="{% static 'cart-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-bg">
+        <div class="image">
+          <img src="{% static 'bg1.png' %}" alt="" />
+        </div>
+
+        <div class="quote-button">
+          <div class="quote">
+            <h1>“Where Every Sip <br />is a Hug in a Mug”</h1>
+          </div>
+
+          <div class="button">
+            <div class="viewmenu">
+              <a href=""><button>View Menu</button></a>
+            </div>
+            <div class="viewoffers">
+              <a href=""><button>Special Offers</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-heins">
+        <div class="content">
+          <div class="header">
+            <h1>Why Heins' Coffee?</h1>
+          </div>
+          <div class="description">
+            <p>
+              dito mo ilalagay kung bakit ikaw dapat ang kanilang pipiliin
+              HAHAHAHA siyempre heins mhyr coffee yan eh
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="specialoffers-bestselling">
+        <h1>Must Try</h1>
+        {% for prod in product %}
+        <div class="content">
+          <div class="special-offers">
+            <div class="image">
+              <img src="{{ prod.productImage }}" alt="" />
+            </div>
+            <div class="name-button">
+              <p>{{ prod.name }}</p>
+              <a href="{% url 'productview' prod.slug %}"
+                ><button>View Product</button></a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="specialoffers-bestselling">
+        {% if bestProduct %}
+        <h1 class="bestselling">Best Product</h1>
+        {% for best in bestProduct %}
+        <div class="content">
+          <div class="special-offers">
+            <div class="image">
+              <img src="{{ best.productImage }}" alt="" />
+            </div>
+            <div class="name-button">
+              <p>{{ best.name }}</p>
+              <a href="{% url 'productview' best.slug %}"
+                ><button>View Product</button></a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %} {% else %} {% endif %}
+      </div>
+
+      <div class="contact-page">
+        <div class="contact">
+          <div class="facebook">
+            <img src="{% static 'facebook-svgrepo-com.svg' %}" alt="" />
+          </div>
+
+          <div class="email">
+            <a><p>heinrichmapagmahal@gmail.com</p> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--^ container-->
+  </body>
+</html>

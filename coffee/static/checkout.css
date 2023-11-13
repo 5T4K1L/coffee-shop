@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #488491;
+}
+
+.container {
+    color: white;
+    font-family: 'Playfair Display';
+    padding: 0 2em;
+}
+
+input {
+    text-align: center;
+    width: 100%;
+    border: none;
+    border-radius: 2em;
+    height: 2em;
+    margin-top: -1em;
+    margin-bottom: 1em;
+}
+
+.order-review {
+    background-color: white;
+    color: black;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    margin-top: 2em;
+}
+
+.order-review h1 {
+    font-size: 20px;
+} 
+
+.order-review li {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.order-review .total {
+    color: red;
+}
+
+.order-review button {
+    background-color: #464646;
+    color: white;
+    border: none;
+    border-radius: 2em;
+    padding: 0.5em 5em;
+    font-size: 15px;
+}
+
+.order-review .quantity {
+    color: red;
+}
+
+.order-review .name {
+    color: blue;
+}

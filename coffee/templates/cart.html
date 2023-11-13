@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{request.user}}'s Cart</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'cart.css' %}" />
+  </head>
+  <body>
+    {% block content %}
+    <div class="container">
+      <div class="navbar">
+        <div class="content">
+          <div class="logo">
+            <h1>Logo mo ang andine</h1>
+          </div>
+
+          <div class="links">
+            <div class="menu">
+              <a href="{% url 'menu' %}">
+                <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+
+            <div class="cart">
+              <a href="{% url 'cart' %}">
+                <img src="{% static 'cart-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% csrf_token %}
+      <div class="products-cart">
+        {% for item in items %} {% if user.is_authenticated %}
+        <div style="margin-bottom: 1em" class="for-background">
+          <div class="image-name-etc">
+            <div class="image">
+              <img style="height: 11em" src="{{ item.image.url }}" alt="" />
+            </div>
+            <div class="name-price-size">
+              <h1>{{item.name}}</h1>
+              <p id="price" data-price="{{item.price}}" class="price">
+                Php {{item.price}}
+              </p>
+              <p class="size">{{item.size}}</p>
+
+              <p class="quantity">x{{item.quantity}}</p>
+
+              <form action="{% url 'remove_from_cart' item.id %}">
+                <input
+                  type="hidden"
+                  name="item_id"
+                  value="{{item.id}}"
+                  id="item_id"
+                />
+                <button type="submit">Remove</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
+
+        <div class="checkout-total">
+          <div class="total-price">
+            <div class="total">
+              <p>Total:</p>
+            </div>
+            <div class="price">
+              <p id="price-total">Php 140</p>
+              <input
+                type="hidden"
+                id="price_total_value"
+                name="price_total_value"
+                value=""
+              />
+            </div>
+          </div>
+
+          <div class="checkout">
+            <a href="{% url 'checkoutPage' %}"><button>Checkout</button> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    <script>
+      var priceElements = document.querySelectorAll(".price");
+      var totalPrice = 0;
+
+      priceElements.forEach(function (element) {
+        var price = element.getAttribute("data-price");
+
+        if (!isNaN(parseFloat(price))) {
+          totalPrice += parseFloat(price);
+        }
+      });
+
+      var total_price = document.getElementById("price-total");
+      total_price.textContent = "Php " + totalPrice;
+
+      var price_total_value = document.getElementById("price_total_value");
+      price_total_value.value = totalPrice;
+    </script>
+  </body>
+</html>

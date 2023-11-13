@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+
+body {
+    background-color: #693F33;
+    margin: 0;
+}
+
+.container {
+    position: relative;
+    background-color: #693F33;
+}
+
+.products-cart {
+    background-color: #F2E8D4;
+    margin: 1em;
+    padding: 1em;
+    font-family: 'Inder';
+}
+
+.for-background {
+    background-color: white;
+    padding: 1em ;
+    border-radius: 10px;
+}
+
+.image-name-etc {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+}
+
+.image-name-etc h1 {
+    font-size: 20px;
+}
+
+.name-price-size .price {
+    font-size: 13px;
+    color: #FF9900;
+}
+
+.name-price-size .size {
+    font-size: 12px;
+    color: #FF9900;
+}
+
+.quantity {
+    font-size: small;
+    color: rgb(237, 119, 119);
+}
+
+.name-price-size button {
+    border: none;
+    background-color: rgb(239, 37, 37);
+    color: white;
+    width: 7em;
+    height: 2em;
+    border-radius: 2em;
+}
+
+.checkout-total {
+    margin-top: 2em;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    gap: 5em;
+}
+
+.total-price {
+    font-size: 10px;
+}
+
+.total-price .price {
+    margin-top: -15px;
+    font-size: 15px
+}
+
+.checkout-total .checkout button {
+    border: none;
+    background-color: #4a2c23;
+    color: white;
+    height: 3em;
+    width: 11em;
+    border-radius: 2em;
+    margin-top: 0.6em;
+}

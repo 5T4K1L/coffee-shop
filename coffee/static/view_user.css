@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+
+body {
+    background-color: #1F2421;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    font-family: 'Inder';
+    position: relative;
+}
+
+.contents {
+    margin: 1em;
+    border-radius: 20px;
+    background-color: #A288E3;
+    color: white;
+    padding: 1em 2em;
+}
+
+.contents p {
+    font-size: 15px;
+    text-align: center;
+}
+
+.order-summary {
+    background-color: white;
+    margin: 1em;
+    border-radius: 1em;
+    position: relative;
+}
+
+.order {
+    padding: 0.3em 1em 0;
+}
+
+.orders {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #A288E3;
+    margin-top: 1em;
+    color: white;
+    border-radius: 1em;
+}
+
+.total {
+    margin: 1em;
+}
+
+.total-price {
+    color: red;
+}
+
+.information-summary h1 {
+    font-size: larger;
+}
+
+.information-summary {
+    margin: 2em 1em;
+    padding-bottom: 1em;
+}
+
+.information-summary p {
+    font-size: small;
+    margin-top: 2em;
+}
+
+.information-summary span {
+    color: blue;
+}

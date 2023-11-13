@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+
+body {
+    background-color: #1F2421;
+    margin: 0;
+}
+
+.container {
+    font-family: 'Inder';
+    position: relative;
+}
+
+.contents {
+    margin: 1em;
+    border-radius: 20px;
+    background-color: #A288E3;
+    color: white;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contents p {
+    font-size: 10px;
+}
+
+.contents span {
+    font-size: 20px;
+}
+
+.profile .contents img {
+    height: 4em;
+    border-radius: 10em;
+}
+
+.dashboard {
+    background-color: white;
+    margin: 0 1em 0;
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.total-content {
+    background-color: #A288E3;
+    color: white;
+    margin: 1em;
+    padding: 2em;
+    border-radius: 1em;
+    position: relative;
+    width: 5em;
+}
+
+.total-income {
+    position: absolute;
+    top: -5%;
+    left: 10%;
+}
+
+.total-price {
+    font-size: 17px;
+    margin-top: 1.4em;
+    text-align: center;
+}
+
+.total-users {
+    width: 7em;
+    background-color: #A288E3;
+    color: white;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.total-users p {
+    margin-top: -5px;
+}
+
+.user-count p {
+    text-align: center;
+    margin-top: 1.7em;
+}
+
+.total-purchases {
+    background-color: #A288E3;
+    color: white;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.total-purchase p {
+    margin-top: -4px;
+}
+
+.purchase-count p {
+    text-align: center;
+    padding: 1em;
+}
+
+.percent-purchases {
+    background-color: #A288E3;
+    color: white;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.percent-purchase p {
+    margin-top: 1px;
+    font-size: 0.7em;
+}
+
+.purchase-percentage p {
+    text-align: center;
+    padding: 1em;
+}
+
+.user-out {
+    font-size: 12px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    border-radius: 2em;
+    margin: 1em;
+    padding: 1em;
+}
+
+.user-out button {
+    color: white;
+    border: none;
+    border-radius: 2em;
+    background-color: #A288E3;
+    width: 8em;
+    height: 3em;
+}
+
+.done {
+    background-color: #FF9F9F;
+    color: white;
+}

@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+
+body {
+    margin: 0;
+}
+
+.home-bg {
+    position: relative;
+}
+
+.home-bg .image img {
+    width: 100%;
+}
+
+.quote-button {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.quote-button h1 {
+    font-family: 'Dancing Script';
+    font-size: 2em;
+    color: white;
+}
+
+.quote-button .button {
+    display: flex;
+    justify-content: center;
+}
+
+.quote-button .button button{
+    background-color: #2E1A17;
+    color: white;
+    border: none;
+    padding: 1em;
+    height: 40px;
+    width: 120px;
+    font-family: 'Lato';
+    font-size: 11px;
+    margin: 0em 1em 0 1em;
+}
+
+.why-heins {
+    position: relative;
+    margin-top: -3px;
+}
+
+.why-heins .content {
+    background-color: #F2E8D4;
+    text-align: center;
+}
+
+.why-heins .header {
+    font-family: 'Pacifico';
+    font-size: 10px;
+}
+
+.why-heins .description {
+    font-family: 'Dancing Script';
+}
+
+.specialoffers-bestselling {
+    position: relative;
+    background-color: #693F33;
+    margin-top: -22px;
+    padding-bottom: 1em;
+}
+
+.specialoffers-bestselling h1 {
+    padding: 1em 2em 0.5em;
+    font-size: 17px;
+    color: white;
+    font-family: 'Playfair Display';
+}
+
+.specialoffers-bestselling .content {
+    padding: 0 2em 1em;
+}
+
+.special-offers {
+    display: flex;
+    background-color: #F2E8D4;
+    padding: 1em;
+    border-radius: 10px;
+
+}
+
+.special-offers .name-button {
+    margin: 0 1em;
+}
+
+.special-offers .name-button p {
+    font-family: 'Inder';
+    color: #2E1A17;
+    font-size: 15px;
+}
+
+.special-offers .name-button button {
+    border: none;
+    background-color: #2E1A17;
+    color: white;
+    font-family: 'Lato';
+    padding: 0.5em 1em;
+    font-size: 12px;
+}
+
+.specialoffers-bestselling .bestselling {
+    padding: 1em 2em 0.5em;
+    font-size: 17px;
+    color: white;
+    font-family: 'Playfair Display';
+}
+
+.contact-page {
+    position: relative;
+}
+
+.contact-page .contact {
+    background-color: #F2E8D4;
+    font-family: 'Pacifico';
+    display: flex;
+    justify-content: center;
+}
+
+.contact-page .facebook img {
+    height: 30px;
+    margin-top: 4px;
+}
+
+.contact-page .email {
+    font-size: 10px;
+}

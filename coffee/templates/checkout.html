@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout {{request.user}}</title>
+    <link rel="stylesheet" href="{% static 'checkout.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="billing-address">
+          <div class="fullname">
+            <p>Full Name</p>
+            <input name="fullname" type="text" />
+          </div>
+
+          <div class="contactnumber">
+            <p>Contact Number</p>
+            <input name="contactnumber" type="text" />
+          </div>
+
+          <div class="fulladdress">
+            <p>Full Address</p>
+            <input type="text" name="fulladdress" />
+          </div>
+
+          <div class="message">
+            <p>Message</p>
+            <input type="text" name="message" />
+          </div>
+        </div>
+
+        <div class="order-review">
+          <h1>Order Review</h1>
+          <ul>
+            {% for cart in usersCart %}
+            <li>
+              You ordered <span class="quantity">x{{cart.quantity}}</span> of
+              <span class="name">{{cart.name}}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          <p>Total: <span class="total">Php {{total}}</span></p>
+          <button type="submit">Checkout</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

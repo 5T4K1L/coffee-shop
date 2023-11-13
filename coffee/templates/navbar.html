@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+  </head>
+  <body>
+    {% block content %}
+    <div class="container">
+      <div class="navbar">
+        <div class="content">
+          <div class="logo">
+            <h1>Logo mo ang andine</h1>
+          </div>
+
+          <div class="links">
+            <div class="menu">
+              <a href="{% url 'cart' %}">
+                <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+
+            <div class="cart">
+              <a href="">
+                <img src="{% static 'cart-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

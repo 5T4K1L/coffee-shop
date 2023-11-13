@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+    <link rel="stylesheet" href="{% static 'menu.css' %}" />
+    <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="content">
+          <div class="logo">
+            <h1>Logo mo ang andine</h1>
+          </div>
+
+          <div class="links">
+            <div class="menu">
+              <a href="{% url 'menu' %}">
+                <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+
+            <div class="cart">
+              <a href="{% url 'cart' %}">
+                <img src="{% static 'cart-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-menu">
+        <div class="menu">
+          <div class="bg-image"></div>
+          {% if product %}
+          <div class="header">
+            <h1>Icicle Blends</h1>
+          </div>
+
+          <div class="for-flex">
+            {% for prod in product %}
+            <div class="product-menu">
+              <a href="{% url 'productview' prod.slug %}">
+                <div class="main-product">
+                  <img src="{{prod.productImage.url}}" alt="" />
+                  <p>{{prod.name}}</p>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %} {% if hotProduct %}
+          <div class="header">
+            <h1>Warmth Rarities</h1>
+          </div>
+
+          <div class="for-flex">
+            {% for hot in hotProduct %}
+            <div class="product-menu">
+              <a href="{% url 'productview' hot.slug %}">
+                <div class="main-product">
+                  <img src="{{hot.productImage.url}}" alt="" />
+                  <p>{{hot.name}}</p>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="bg-image"></div>
+        </div>
+      </div>
+    </div>
+    <!-- container -->
+  </body>
+</html>
