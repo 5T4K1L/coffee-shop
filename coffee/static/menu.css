@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
 
+
 body {
     margin: 0;
+    box-sizing: border-box;
 }
 
 .home-bg {
@@ -74,5 +76,23 @@ body {
 }
 
 .main-menu .product-menu a {
+    text-decoration: none;
+}
+
+.footer-container {
+    position: relative;
+}
+
+.footer {
+    background-color: #F2E8D4;
+    padding: 0.5em;
+}
+
+.filter-logo {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer a {
     text-decoration: none;
 }

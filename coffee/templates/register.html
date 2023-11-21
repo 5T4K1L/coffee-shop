@@ -10,6 +10,7 @@
   </head>
   <body>
     <div class="container">
+      <div class="cover"></div>
       <div class="login-form">
         <div class="contents">
           <form action="" method="post">
@@ -24,6 +25,11 @@
             <p class="haveaccount">
               Already have an account? <a href="{% url 'login' %}">Login</a>.
             </p>
+            {% for message in messages %}
+            <p class="invalid" style="color: red; font-size: small">
+              {{message}}
+            </p>
+            {% endfor %}
           </form>
         </div>
       </div>

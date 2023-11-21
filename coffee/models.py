@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 from django.contrib.auth.models import User
+from datetime import date
 
 
 # dummy only for the model Products to work
@@ -33,12 +34,13 @@ class Products(models.Model):
 
     best_try = (
         ('MUST TRY', 'MUST TRY'),
-        ('BEST PRODUCT', 'BEST PRODUCT')
+        ('BEST PRODUCT', 'BEST PRODUCT'),
     )
 
     category = (
         ('COLD', 'COLD'),
         ('HOT', 'HOT'),
+        ('FOOD', 'FOOD'),
     )
 
     name = models.CharField(max_length=100, null=True)
@@ -90,6 +92,12 @@ class Comment(models.Model):
 
 
 class BillingAddress(models.Model):
+
+    isComplete = (
+        ('NO', 'NO'),
+        ('YES', 'YES'),
+    )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     full_name = models.CharField(default='', null=True, max_length=1000)
@@ -98,6 +106,8 @@ class BillingAddress(models.Model):
     message = models.CharField(default='', null=True, max_length=1000)
 
     total_price = models.CharField(default='', null=True, max_length=1000)
+
+    is_complete = models.CharField(choices=isComplete, null=True, default='')
 
     def __str__(self):
         return self.full_name
@@ -114,3 +124,22 @@ class UsersOrderNotif(models.Model):
 
     class Meta:
         verbose_name_plural = "Users' Order Notifications"
+
+
+class UserProductInAdmin(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    prod_name = models.ForeignKey(
+        Products, on_delete=models.CASCADE, related_name="user_products")
+    prod_size = models.CharField(max_length=255, null=True, blank=True)
+    prod_quantity = models.CharField(max_length=255, null=True, blank=True)
+    prod_price = models.CharField(max_length=255, null=True, blank=True)
+
+
+class Completed(models.Model):
+    product_name = models.CharField(default='', null=True, max_length=1000)
+    product = models.CharField(default='', null=True, max_length=1000)
+    quantity = models.CharField(default='', null=True, max_length=1000)
+    full_name = models.CharField(default='', null=True, max_length=1000)
+    price = models.CharField(max_length=255, null=True, blank=True)
+    date_ordered = models.DateField(default=date.today)

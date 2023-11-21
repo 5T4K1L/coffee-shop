@@ -140,3 +140,20 @@ body {
     background-color: #FF9F9F;
     color: white;
 }
+
+.complete-users {
+    background-color: white;
+    margin: 1em;
+    font-size: 0.8em;
+}
+
+.complete-users table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.complete-users td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }

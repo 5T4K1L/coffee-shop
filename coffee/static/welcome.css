@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  background-image: url("./bgimagetwo.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.cover {
+  background-color: black;
+  height: 100vh;
+  opacity: 60%;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttons a {
+  text-decoration: none;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons button {
+  border: none;
+  font-size: 15px;
+  font-family: "Lato";
+  border-radius: 10px;
+  width: 209px;
+  height: 39px;
+  margin: 5px 0;
+}
+
+.buttons .one {
+  background-color: #f2e8d4;
+}
+
+.buttons .two {
+  background-color: #2e1a17;
+  color: white;
+}
+
+.image img {
+  height: 209px;
+}

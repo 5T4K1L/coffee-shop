@@ -5,7 +5,9 @@ from django.urls import include, path
 # app_name = 'coffee'
 
 urlpatterns = [
-    path("", views.homepage, name="homepage"),
+    path("", views.welcomePage, name='welcome'),
+
+    path("homepage/", views.homepage, name="homepage"),
     path("menu/", views.menu, name="menu"),
     path("menu/product/<slug:slug>", views.product_view, name="productview"),
     path("cart/", views.cart, name='cart'),
@@ -23,4 +25,8 @@ urlpatterns = [
 
     path('admin-panel/', views.adminPanel, name='adminPanel'),
     path('view_user/<full_name>', views.whoOrdered, name='whoordered'),
+
+    path('cold-products/', views.orderedCold, name='coldproducts'),
+    path('hot-products/', views.orderedHot, name='hotproducts'),
+
 ]

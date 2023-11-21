@@ -1,55 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap");
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container {
-    background-color: #2E1A17;
-    height: 100vh;
-    position: relative;
+  background-image: url("./bgimagetwo.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
+  position: relative;
+}
+
+.cover {
+  background-color: black;
+  height: 100vh;
+  opacity: 60%;
 }
 
 .login-form {
-    background-color: #F2E8D4;
-    font-family: 'Inder';
-    text-align: center;
-    width: 15em;
-    padding: 2em;
-    
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -50%);
+  background-color: #f2e8d4;
+  border-radius: 10px;
+  font-family: "Inder";
+  text-align: center;
+  width: 15em;
+  padding: 2em;
+
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
 }
 
 .login-form button {
-    background-color: #2E1A17;
-    color: white;
-    border: none;
-    border-radius: 2em;
-    width: 10em;
-    font-size: 15px;
-    padding: 1em;
-    margin-top: 2em;
+  background-color: #2e1a17;
+  color: white;
+  border: none;
+  border-radius: 2em;
+  width: 10em;
+  font-size: 15px;
+  padding: 1em;
+  margin-top: 2em;
 }
 
 .login-form input:nth-child(2) {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 .login-form input {
-    background-color: white;
-    text-align: center;
-    border: none;
-    width: 14em;
-    padding: 0.5em 0;
+  background-color: white;
+  text-align: center;
+  border: none;
+  width: 14em;
+  padding: 0.5em 0;
 }
 
 .noaccount {
-    font-size: 10px;
-    margin-top: 2em;
+  font-size: 10px;
+  margin-top: 2em;
+}
+
+.invalid {
+  color: red;
+  font-size: small;
 }

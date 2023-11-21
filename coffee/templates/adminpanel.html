@@ -67,20 +67,38 @@
 
       <div class="user-checked-out">
         {% for order in ordered %}
-        <div class="list-of-user">
-          <div class="user-out">
-            <p>{{order.full_name}} checked out.</p>
-            <a href="{% url 'whoordered' order.full_name %}"
-              ><button>View</button></a
+        <div class="user-checked-out">
+          <div class="list-of-user">
+            <div
+              class="user-out {% if order.is_complete == 'YES' %} done {% endif %}"
             >
+              <p>{{order.full_name}} checked out.</p>
+              <a href="{% url 'whoordered' order.full_name %}"
+                ><button>View</button></a
+              >
+            </div>
           </div>
-
-          <!-- <div class="user-out done">
-            <p>alfonzo checked out.</p>
-            <button type="submit">View</button>
-          </div> -->
         </div>
         {% endfor %}
+      </div>
+
+      <div class="complete-users">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Paid</th>
+            <th>Product</th>
+            <th>Date</th>
+          </tr>
+          {% for comp in completed %}
+          <tr>
+            <td>{{comp.full_name}}</td>
+            <td>{{comp.price}}</td>
+            <td>{{comp.product_name}} ({{comp.product}} x{{comp.quantity}})</td>
+            <td>{{comp.date_ordered}}</td>
+          </tr>
+          {% endfor %}
+        </table>
       </div>
     </div>
   </body>

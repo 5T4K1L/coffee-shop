@@ -14,7 +14,12 @@
       <div class="navbar">
         <div class="content">
           <div class="logo">
-            <h1>Logo mo ang andine</h1>
+            <img
+              style="padding-top: 3px"
+              height="50em"
+              src="{% static 'mhyrlogo.png' %}"
+              alt=""
+            />
           </div>
 
           <div class="links">
@@ -36,43 +41,41 @@
       <div class="main-menu">
         <div class="menu">
           <div class="bg-image"></div>
-          {% if product %}
-          <div class="header">
-            <h1>Icicle Blends</h1>
-          </div>
 
           <div class="for-flex">
-            {% for prod in product %}
+            {% for all in all %}
             <div class="product-menu">
-              <a href="{% url 'productview' prod.slug %}">
+              <a href="{% url 'productview' all.slug %}">
                 <div class="main-product">
-                  <img src="{{prod.productImage.url}}" alt="" />
-                  <p>{{prod.name}}</p>
+                  <img
+                    style="height: 8em"
+                    src="{{all.productImage.url}}"
+                    alt=""
+                  />
+                  <p>{{all.name}}</p>
                 </div>
               </a>
             </div>
             {% endfor %}
           </div>
-          {% endif %} {% if hotProduct %}
-          <div class="header">
-            <h1>Warmth Rarities</h1>
-          </div>
-
-          <div class="for-flex">
-            {% for hot in hotProduct %}
-            <div class="product-menu">
-              <a href="{% url 'productview' hot.slug %}">
-                <div class="main-product">
-                  <img src="{{hot.productImage.url}}" alt="" />
-                  <p>{{hot.name}}</p>
-                </div>
-              </a>
-            </div>
-            {% endfor %}
-          </div>
-          {% endif %}
 
           <div class="bg-image"></div>
+        </div>
+      </div>
+
+      <div class="footer-container">
+        <div class="footer">
+          <div class="filter-logo">
+            <a href="{% url 'menu' %}">
+              <img height="25em" src="{% static 'allLogo.svg' %}" alt="" />
+            </a>
+            <a href="{% url 'coldproducts' %}">
+              <img height="25em" src="{% static 'coldLogo.svg' %}" alt="" />
+            </a>
+            <a href="{% url 'hotproducts' %}">
+              <img height="25em" src="{% static 'hotLogo.svg' %}" alt="" />
+            </a>
+          </div>
         </div>
       </div>
     </div>

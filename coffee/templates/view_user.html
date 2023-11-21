@@ -30,9 +30,9 @@
         <div class="order">
           {% for order in order %}
           <div class="orders">
-            <p class="price">{{order.price}}</p>
-            <p class="ordername">{{order.name}}</p>
-            <p class="quantity">x{{order.quantity}}</p>
+            <p class="price">{{order.prod_price}}</p>
+            <p class="ordername">{{order.prod_name}} ({{order.prod_size}})</p>
+            <p class="quantity">x{{order.prod_quantity}}</p>
           </div>
           {% endfor %}
           <div class="total">
@@ -60,6 +60,12 @@
           </div>
         </div>
       </div>
+      <form action="" method="post">
+        {% csrf_token %}
+        <button class="completeButton" type="submit" name="complete">
+          Mark as Delivered
+        </button>
+      </form>
     </div>
   </body>
 </html>

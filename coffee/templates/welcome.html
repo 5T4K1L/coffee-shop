@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{% static 'welcome.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="cover"></div>
+
+      <div class="contents">
+        <div class="image">
+          <img src="{% static 'mhyrlogo.png' %}" alt="" />
+        </div>
+
+        <div class="buttons">
+          <a href="{% url 'login' %}"><button class="one">LOGIN</button></a>
+          <a href="{% url 'register' %}"
+            ><button class="two">REGISTER</button></a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

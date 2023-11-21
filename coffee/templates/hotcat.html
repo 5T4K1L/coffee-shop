@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
+    <link rel="stylesheet" href="{% static 'menu.css' %}" />
+    <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="content">
+          <div class="logo">
+            <img
+              style="padding-top: 3px"
+              height="50em"
+              src="{% static 'mhyrlogo.png' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="links">
+            <div class="menu">
+              <a href="{% url 'menu' %}">
+                <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+
+            <div class="cart">
+              <a href="{% url 'cart' %}">
+                <img src="{% static 'cart-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-menu">
+        <div class="menu">
+          <div class="bg-image"></div>
+
+          <div class="for-flex">
+            {% for hot in category %}
+            <div class="product-menu">
+              <a href="{% url 'productview' hot.slug %}">
+                <div class="main-product">
+                  <img
+                    style="height: 8em"
+                    src="{{hot.productImage.url}}"
+                    alt=""
+                  />
+                  <p>{{hot.name}}</p>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="bg-image"></div>
+        </div>
+      </div>
+
+      <div class="footer-container">
+        <div class="footer">
+          <div class="filter-logo">
+            <a href="{% url 'menu' %}">
+              <img height="25em" src="{% static 'allLogo.svg' %}" alt="" />
+            </a>
+            <a href="{% url 'coldproducts' %}">
+              <img height="25em" src="{% static 'coldLogo.svg' %}" alt="" />
+            </a>
+            <a href="{% url 'hotproducts' %}">
+              <img height="25em" src="{% static 'hotLogo.svg' %}" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- container -->
+  </body>
+</html>
