@@ -1,0 +1,98 @@
+{% load static %} {% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{% static 'admin.css' %}" />
+    <link rel="stylesheet" href="{% static 'product_mng.css' %}" />
+    <script src="{% static 'js/real_time.js' %}"></script>
+    <script src="{% static 'js/time_now.js' %}"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <div class="contents">
+          <div class="greetings">
+            <p>
+              WELCOME BACK <br />
+              <span class="name"> Your Name</span>
+              <div style="font-size: 12px; color: beige;" id="time"></div>
+            </p>
+          </div>
+
+          <div class="image">
+            <img src="{% static 'mikhy.jpg' %}" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="product-search">
+        <form action="" method="get">
+          {{filter.form.name | attr:"placeholder:(case-sensitive)"}}
+          <button type="submit">
+            <img src="{% static 'search-svgrepo-com.svg' %}" alt="" />
+          </button>
+        </form>
+      </div>
+
+      <div class="dashboard-mng">
+        <div class="all-products">
+          {% for prod in products %}
+          <div class="product-itself">
+            <input type="hidden" name="delete_product" value="{{prod.id}}" />
+            <p>{{prod.name}}</p>
+            <div class="buttons">
+              <a href="{% url 'delete_prod' prod.id %}">
+                <button class="delete">Delete</button>
+              </a>
+              <a href="{% url 'update_product' prod.id %}">
+                <button class="edit">Edit</button>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="create-product">
+        <a href="{% url 'create_product' %}">
+          <button>Add Product</button>
+        </a>
+      </div>
+
+      <div class="footer">
+        <div class="footer-container">
+          <div class="stats">
+            <a href="{% url 'adminPanel' %}">
+              <img
+                height="30em"
+                src="{% static 'statistics-graph-stats-analytics-business-data-svgrepo-com.svg' %}"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="receipt">
+            <a href="{% url 'receipt' %}">
+              <img
+                height="30em"
+                src="{% static 'receipt-alt-svgrepo-com.svg' %}"
+                alt=""
+            /></a>
+          </div>
+          <div class="products">
+            <a href="{% url 'productmng' %}">
+              <img
+                height="30em"
+                src="{% static 'product-o-svgrepo-com.svg' %}"
+                alt=""
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

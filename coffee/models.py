@@ -4,6 +4,13 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import date
 
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+import json
+
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 
 # dummy only for the model Products to work
 class Beverage(models.Model):
@@ -98,6 +105,12 @@ class BillingAddress(models.Model):
         ('YES', 'YES'),
     )
 
+    isWhat = (
+        ('Order Received by Seller', 'Order Received by Seller'),
+        ('Preparing', 'Preparing'),
+        ('Out for delivery', 'Out for delivery'),
+    )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     full_name = models.CharField(default='', null=True, max_length=1000)
@@ -109,12 +122,27 @@ class BillingAddress(models.Model):
 
     is_complete = models.CharField(choices=isComplete, null=True, default='')
 
+    is_what = models.CharField(
+        choices=isWhat, null=True, default='ORDER RECEIVED BY SELLER')
+
     def __str__(self):
         return self.full_name
 
     def save(self, *args, **kwargs):
         if self.full_name:
             self.slug = slugify(self.full_name)
+
+        channel_layer = get_channel_layer()
+
+        data = {'users': self.full_name}
+
+        async_to_sync(channel_layer.group_send)(
+            'notification_group', {
+                'type': 'send_notification',
+                'value': json.dumps(data)
+            }
+        )
+
         super(BillingAddress, self).save(*args, **kwargs)
 
 

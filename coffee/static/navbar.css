@@ -1,48 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap");
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .navbar {
-    position: relative;
-    background-color: #F2E8D4;
-    width: 100%;
-    height: 70px;
-    margin-top: -17px;
+  position: relative;
+  background-color: #f2e8d4;
+  width: 100%;
+  height: 70px;
+  margin-top: -17px;
 
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .content {
-    padding: 0.9em;
+  padding: 0.9em;
 }
 
 .navbar .logo {
-    font-family: 'Inder', sans-serif;
-    font-size: 10px;
+  font-family: "Inder", sans-serif;
+  font-size: 10px;
 }
 
 .navbar .links {
-    display: flex;
-    float: right;
+  display: flex;
+  float: right;
 
-    position: absolute;
-    top: 25%;
-    right: 0%;
+  position: absolute;
+  top: 25%;
+  right: 0%;
 
-    padding: 0.7em;
+  padding: 0.7em;
+}
+
+.links .track-order {
+  margin-right: 9px;
 }
 
 .navbar .menu {
-    position: absolute;
-    top: 17%;
-    right: 100%;
+  position: absolute;
+  top: 17%;
+  right: 100%;
 }
 
 .navbar .links img {
-    height: 30px;
+  height: 30px;
 }

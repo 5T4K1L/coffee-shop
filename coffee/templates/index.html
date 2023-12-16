@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'navbar.css' %}" />
   </head>
   <body>
-    <div class="container">
+    <div class="containertrack">
       <div class="navbar">
         <div class="content">
           <div class="logo">
@@ -23,6 +23,12 @@
           </div>
 
           <div class="links">
+            <div class="track-order">
+              <a href="{% url 'track' %}">
+                <img src="{% static 'package-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
+
             <div class="menu">
               <a href="{% url 'menu' %}">
                 <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
@@ -45,7 +51,7 @@
 
         <div class="quote-button">
           <div class="quote">
-            <h1>“Where Every Sip <br />is a Hug in a Mug”</h1>
+            <h1>Your Company <br />Quote Here</h1>
           </div>
 
           <div class="button">
@@ -59,17 +65,24 @@
       <div class="why-heins">
         <div class="content">
           <div class="header">
-            <h1>Why Heins' Coffee?</h1>
+            <h1>Why Our Business?</h1>
           </div>
           <div class="description">
             <p>
-              dito mo ilalagay kung bakit ikaw dapat ang kanilang pipiliin
-              HAHAHAHA siyempre heins mhyr coffee yan eh
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+              pariatur. Minus, nobis delectus quod cum distinctio doloremque
+              nulla sint ducimus exercitationem magnam magni deleniti dolorem
+              atque suscipit excepturi harum recusandae! Accusamus fugiat vel
+              esse illo optio asperiores? Alias, dolorum provident esse enim
+              deleniti iusto rerum voluptatum libero blanditiis sit omnis animi
+              minima, perferendis, ad sequi consequatur sed laboriosam minus
+              ipsa?
             </p>
           </div>
         </div>
       </div>
 
+      {% if mustTry %}
       <div class="specialoffers-bestselling">
         <h1>Must Try</h1>
         {% for prod in product %}
@@ -88,9 +101,8 @@
         </div>
         {% endfor %}
       </div>
-
+      {% endif %} {% if bestProduct %}
       <div class="specialoffers-bestselling">
-        {% if bestProduct %}
         <h1 class="bestselling">Best Product</h1>
         {% for best in bestProduct %}
         <div class="content">
@@ -106,8 +118,9 @@
             </div>
           </div>
         </div>
-        {% endfor %} {% else %} {% endif %}
+        {% endfor %} {% else %}
       </div>
+      {% endif %}
 
       <div class="contact-page">
         <div class="contact">
@@ -116,7 +129,7 @@
           </div>
 
           <div class="email">
-            <a><p>heinrichmapagmahal@gmail.com</p> </a>
+            <a><p>youremail@gmail.com</p> </a>
           </div>
         </div>
       </div>

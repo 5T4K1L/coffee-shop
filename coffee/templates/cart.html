@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{% static 'cart.css' %}" />
   </head>
   <body>
-    {% block content %}
     <div class="container">
       <div class="navbar">
         <div class="content">
@@ -24,6 +23,11 @@
           </div>
 
           <div class="links">
+            <div class="track-order">
+              <a href="{% url 'track' %}">
+                <img src="{% static 'package-svgrepo-com.svg' %}" alt="" />
+              </a>
+            </div>
             <div class="menu">
               <a href="{% url 'menu' %}">
                 <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
@@ -41,7 +45,7 @@
 
       {% csrf_token %}
       <div class="products-cart">
-        {% for item in items %} {% if user.is_authenticated %}
+        {% for item in items %}
         <div style="margin-bottom: 1em" class="for-background">
           <div class="image-name-etc">
             <div class="image">
@@ -53,30 +57,32 @@
                 Php {{item.price}}
               </p>
               <p class="size">{{item.size}}</p>
-
               <p class="quantity">x{{item.quantity}}</p>
 
-              <form action="{% url 'remove_from_cart' item.id %}">
+              {% if admin_cart|length > 0 %} {% with admin=admin_cart.0 %}
+              <form action="{% url 'remove_from_cart' item.id admin.id %}">
                 <input
                   type="hidden"
                   name="item_id"
-                  value="{{item.id}}"
+                  value="{{item.id}} {{admin.id}}"
                   id="item_id"
                 />
                 <button type="submit">Remove</button>
               </form>
+              {% endwith %} {% endif %}
             </div>
           </div>
         </div>
-        {% endif %} {% endfor %}
+        {% endfor %}
 
         <div class="checkout-total">
+          {% if items %}
           <div class="total-price">
             <div class="total">
               <p>Total:</p>
             </div>
             <div class="price">
-              <p id="price-total">Php 140</p>
+              <p id="price-total">Php 0</p>
               <input
                 type="hidden"
                 id="price_total_value"
@@ -85,14 +91,22 @@
               />
             </div>
           </div>
+          {% else %}
+          <div class="total">
+            <a href="{% url 'menu' %}" style="text-decoration: none">
+              <p>Add some items to the cart</p>
+            </a>
+          </div>
+          {% endif %}
 
           <div class="checkout">
+            {% if items %}
             <a href="{% url 'checkoutPage' %}"><button>Checkout</button> </a>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
-    {% endblock %}
     <script>
       var priceElements = document.querySelectorAll(".price");
       var totalPrice = 0;

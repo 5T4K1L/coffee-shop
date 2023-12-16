@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Order</title>
+  </head>
+  <body>
+    {% load static %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Heins' Coffee</title>
+        <link rel="stylesheet" href="{% static 'index.css' %}" />
+        <link rel="stylesheet" href="{% static 'navbar.css' %}" />
+        <link rel="stylesheet" href="{% static 'track.css' %}" />
+        <script src="{% static 'js/track.js' %}"></script>
+      </head>
+      <body>
+        <div class="container">
+          <div class="navbar">
+            <div class="content">
+              <div class="logo">
+                <img
+                  style="padding-top: 3px"
+                  height="50em"
+                  src="{% static 'mhyrlogo.png' %}"
+                  alt=""
+                />
+              </div>
+
+              <div class="links">
+                <div class="track-order">
+                  <a href="{% url 'track' %}">
+                    <img src="{% static 'package-svgrepo-com.svg' %}" alt="" />
+                  </a>
+                </div>
+
+                <div class="menu">
+                  <a href="{% url 'menu' %}">
+                    <img src="{% static 'coffee-svgrepo-com.svg' %}" alt="" />
+                  </a>
+                </div>
+
+                <div class="cart">
+                  <a href="{% url 'cart' %}">
+                    <img src="{% static 'cart-svgrepo-com.svg' %}" alt="" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="hasorder" class="hasorder">
+            {% if track is None %}
+            <h1>You don't have any orders yet</h1>
+            {% else %}
+            <h1>{{track}}</h1>
+            {% if track == 'Out for Delivery' %}
+            <h1 style="font-size: 12px; color: rgb(244, 92, 92)">
+              Please pay exact amount of {{total}}
+            </h1>
+            {% endif %} {% endif %}
+          </div>
+        </div>
+      </body>
+    </html>
+  </body>
+</html>

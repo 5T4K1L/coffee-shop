@@ -60,12 +60,26 @@
           </div>
         </div>
       </div>
-      <form action="" method="post">
-        {% csrf_token %}
-        <button class="completeButton" type="submit" name="complete">
-          Mark as Delivered
-        </button>
-      </form>
+      <div class="forms" style="margin-bottom: 2em">
+        <form action="{% url 'preparing' user.full_name %}" method="post">
+          {% csrf_token %}
+          <button class="preparing" type="submit" name="complete">
+            Preparing
+          </button>
+        </form>
+        <form action="{% url 'outDelivery' user.full_name %}" method="post">
+          {% csrf_token %}
+          <button class="outForDelivery" type="submit" name="complete">
+            Out for Delivery
+          </button>
+        </form>
+        <form action="" method="post">
+          {% csrf_token %}
+          <button class="completeButton" type="submit" name="complete">
+            Mark as Delivered
+          </button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receipt</title>
+    <link rel="stylesheet" href="{% static 'admin.css' %}" />
+    <script src="{% static 'js/real_time.js' %}"></script>
+    <script src="{% static 'js/time_now.js' %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <div class="contents">
+          <div class="greetings">
+            <p>
+              WELCOME BACK <br />
+              <span class="name"> Your Name</span>
+              <div style="font-size: 12px; color: beige;" id="time"></div>
+            </p>
+          </div>
+
+          <div class="image">
+            <img src="{% static 'mikhy.jpg' %}" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="user-checked-out">
+        {% for order in ordered %}
+        <div class="user-checked-out">
+          <div class="list-of-user">
+            <div
+              class="user-out {% if order.is_complete == 'YES' %} done {% endif %}"
+            >
+              <p id="orderFullName">{{order.user}} checked out.</p>
+              <a href="{% url 'whoordered' order.full_name %}"
+                ><button>View</button></a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="complete-users">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Paid</th>
+            <th>Product</th>
+            <th>Date</th>
+          </tr>
+          {% for comp in completed %}
+          <tr>
+            <td>{{comp.full_name}}</td>
+            <td>{{comp.price}}</td>
+            <td>{{comp.product_name}} ({{comp.product}} x{{comp.quantity}})</td>
+            <td>{{comp.date_ordered}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        <h1 id="omsim"></h1>
+      </div>
+
+      <div class="footer">
+        <div class="footer-container">
+          <div class="stats">
+            <a href="{% url 'adminPanel' %}">
+              <img
+                height="30em"
+                src="{% static 'statistics-graph-stats-analytics-business-data-svgrepo-com.svg' %}"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="receipt">
+            <a href="{% url 'receipt' %}">
+              <img
+                height="30em"
+                src="{% static 'receipt-alt-svgrepo-com.svg' %}"
+                alt=""
+            /></a>
+          </div>
+          <div class="products">
+            <a href="{% url 'productmng' %}">
+              <img
+                height="30em"
+                src="{% static 'product-o-svgrepo-com.svg' %}"
+                alt=""
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

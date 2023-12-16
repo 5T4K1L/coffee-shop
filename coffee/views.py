@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+from .filters import ProductsFilter
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
@@ -10,6 +12,8 @@ from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404
 
 from django.contrib import messages
+
+from .forms import *
 # Create your views here.
 
 
@@ -25,10 +29,12 @@ def welcomePage(request):
 def homepage(request):
     product = Products.objects.filter(bestProduct='MUST TRY')
     bestProduct = Products.objects.filter(bestProduct='BEST PRODUCT')
+    mustTry = Products.objects.filter(bestProduct='MUST TRY')
 
     context = {
         'product': product,
         'bestProduct': bestProduct,
+        'mustTry': mustTry
     }
 
     return render(request, "index.html", context)
@@ -69,14 +75,85 @@ def addComment(request):
     return redirect('menu')
 
 
+def track_order(request):
+
+    try:
+        billing_address = BillingAddress.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        return render(request, "track_order.html")
+
+    context = {
+        'track': billing_address.is_what,
+        'total': billing_address.total_price
+    }
+
+    return render(request, "track_order.html", context)
+
+
+def preparing(request, full_name):
+    user_billing_address = BillingAddress.objects.get(full_name=full_name)
+
+    # Update the is_what field for the BillingAddress instance
+    user_billing_address.is_what = 'Preparing your order'
+    user_billing_address.save()
+
+    # Trigger the WebSocket event after updating the data
+    channel_layer = get_channel_layer()
+
+    data = {'is_what': user_billing_address.is_what}
+
+    async_to_sync(channel_layer.group_send)(
+        "track_group", {
+            "type": "send_track",
+            "value": json.dumps(data)
+        }
+    )
+
+    if request.method == 'POST':
+        return redirect("adminPanel")
+
+
+def outDelivery(request, full_name):
+    user_billing_address = BillingAddress.objects.get(full_name=full_name)
+
+    # Update the is_what field for the BillingAddress instance
+    user_billing_address.is_what = 'Out for Delivery'
+    user_billing_address.save()
+
+    channel_layer = get_channel_layer()
+
+    data = {'is_what': user_billing_address.is_what}
+
+    async_to_sync(channel_layer.group_send)(
+        "track_group", {
+            "type": "send_track",
+            "value": json.dumps(data)
+        }
+    )
+
+    if request.method == 'POST':
+        return redirect("adminPanel")
+
+
 @login_required(login_url="login")
 def cart(request):
 
     if request.user.is_authenticated:
         items = OrdersInCart.objects.filter(user=request.user)
+        admin_cart = UserProductInAdmin.objects.filter(user=request.user)
+
+        is_what_value = None
+
+        try:
+            billing = BillingAddress.objects.get(user=request.user)
+            is_what_value = billing.is_what
+        except ObjectDoesNotExist:
+            pass
 
     context = {
         'items': items,
+        'is_what_value': is_what_value,
+        'admin_cart': admin_cart
     }
 
     return render(request, 'cart.html', context)
@@ -102,7 +179,7 @@ def checkoutPage(request):
 
         products_ordered.delete()
 
-        return redirect("homepage")
+        return redirect("track")
 
     context = {
         'usersCart': products_ordered,
@@ -132,9 +209,12 @@ def add_to_cart(request):
     return redirect("menu")
 
 
-def remove_from_cart(request, item_id):
+def remove_from_cart(request, item_id, admin_id):
 
     item = OrdersInCart.objects.get(pk=item_id)
+    cart_admin = UserProductInAdmin.objects.get(pk=admin_id)
+
+    cart_admin.delete()
 
     item.delete()
     return redirect('cart')
@@ -185,7 +265,7 @@ def adminPanel(request):
     if request.user.is_staff or request.user.is_superuser:
         userCount = User.objects.count()
 
-        total_purchase = BillingAddress.objects.count()
+        total_purchase = Completed.objects.count()
 
         totalIncome = list(
             Completed.objects.values_list('price', flat=True))
@@ -194,20 +274,27 @@ def adminPanel(request):
 
         ordered = BillingAddress.objects.all()
 
-        completed = Completed.objects.all().order_by('-id')
-
         context = {
             'userCount': userCount,
             'totalIncome': total_sum,
             'totalpurch': total_purchase,
             'ordered': ordered,
-            'completed': completed,
         }
 
         return render(request, 'adminpanel.html', context)
 
     else:
         return redirect('homepage')
+
+
+def receipt(request):
+    completed = Completed.objects.all().order_by('-id')
+
+    context = {
+        'completed': completed,
+    }
+
+    return render(request, "receipt.html", context)
 
 
 def whoOrdered(request, full_name):
@@ -231,14 +318,26 @@ def whoOrdered(request, full_name):
                 quantity=order.prod_quantity,
             )
 
-        user_billing_address.delete()
         user_orders.delete()
+        user_billing_address.delete()
 
-        return redirect('adminPanel')
+        channel_layer = get_channel_layer()
+
+        data = {'is_what': user_billing_address.is_what}
+
+        async_to_sync(channel_layer.group_send)(
+            "track_group", {
+                "type": "send_track",
+                "value": json.dumps(data)
+            }
+        )
+
+        return redirect('receipt')
 
     context = {
         'user': user_billing_address,
         'order': user_orders,
+        'user_name': user,
     }
 
     return render(request, 'view_user.html', context)
@@ -266,3 +365,58 @@ def orderedHot(request):
     }
 
     return render(request, 'hotcat.html', context)
+
+
+def product_management(request):
+
+    products = Products.objects.all()
+
+    myFilter = ProductsFilter(request.GET, queryset=products)
+    products = myFilter.qs
+
+    context = {
+        'products': products,
+        'filter': myFilter,
+    }
+
+    return render(request, 'product_mng.html', context)
+
+
+def create_product(request):
+    createProducts = CreateProducts()
+
+    if request.method == 'POST':
+        form = CreateProducts(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("productmng")
+
+    context = {
+        'create_prod': createProducts
+    }
+
+    return render(request, 'create_product.html', context)
+
+
+def update_product(request, pk):
+    products = Products.objects.get(id=pk)
+    createProducts = CreateProducts(instance=products)
+
+    if request.method == 'POST':
+        form = CreateProducts(request.POST, instance=products)
+        if form.is_valid():
+            form.save()
+            return redirect('productmng')
+
+    context = {
+        'create_prod': createProducts
+    }
+    return render(request, 'create_product.html', context)
+
+
+def delete_product(request, pk):
+
+    product = Products.objects.get(id=pk)
+    product.delete()
+
+    return redirect('productmng')

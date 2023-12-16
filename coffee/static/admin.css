@@ -1,159 +1,176 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap");
 
 body {
-    background-color: #1F2421;
-    margin: 0;
+  background-color: #1f2421;
+  margin: 0;
 }
 
 .container {
-    font-family: 'Inder';
-    position: relative;
+  font-family: "Inder";
+  position: relative;
+  padding-bottom: 3em;
 }
 
 .contents {
-    margin: 1em;
-    border-radius: 20px;
-    background-color: #A288E3;
-    color: white;
-    padding: 1em 2em;
-    display: flex;
-    justify-content: space-between;
+  margin: 1em;
+  border-radius: 20px;
+  background-color: #a288e3;
+  color: white;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
 }
 
 .contents p {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .contents span {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .profile .contents img {
-    height: 4em;
-    border-radius: 10em;
+  height: 4em;
+  border-radius: 10em;
 }
 
 .dashboard {
-    background-color: white;
-    margin: 0 1em 0;
-    border-radius: 1em;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  background-color: white;
+  margin: 0 1em 0;
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .total-content {
-    background-color: #A288E3;
-    color: white;
-    margin: 1em;
-    padding: 2em;
-    border-radius: 1em;
-    position: relative;
-    width: 5em;
+  background-color: #a288e3;
+  color: white;
+  margin: 1em;
+  padding: 2em;
+  border-radius: 1em;
+  position: relative;
+  width: 5em;
 }
 
 .total-income {
-    position: absolute;
-    top: -5%;
-    left: 10%;
+  position: absolute;
+  top: -5%;
+  left: 10%;
 }
 
 .total-price {
-    font-size: 17px;
-    margin-top: 1.4em;
-    text-align: center;
+  font-size: 17px;
+  margin-top: 1.4em;
+  text-align: center;
 }
 
 .total-users {
-    width: 7em;
-    background-color: #A288E3;
-    color: white;
-    margin: 1em;
-    padding: 1em;
-    border-radius: 1em;
+  width: 7em;
+  background-color: #a288e3;
+  color: white;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
 }
 
 .total-users p {
-    margin-top: -5px;
+  margin-top: -5px;
 }
 
 .user-count p {
-    text-align: center;
-    margin-top: 1.7em;
+  text-align: center;
+  margin-top: 1.7em;
 }
 
 .total-purchases {
-    background-color: #A288E3;
-    color: white;
-    margin: 1em;
-    padding: 1em;
-    border-radius: 1em;
+  background-color: #a288e3;
+  color: white;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
 }
 
 .total-purchase p {
-    margin-top: -4px;
+  font-size: small;
+  margin-top: -4px;
 }
 
 .purchase-count p {
-    text-align: center;
-    padding: 1em;
+  text-align: center;
+  padding: 1em;
 }
 
 .percent-purchases {
-    background-color: #A288E3;
-    color: white;
-    margin: 1em;
-    padding: 1em;
-    border-radius: 1em;
+  background-color: #a288e3;
+  color: white;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
 }
 
 .percent-purchase p {
-    margin-top: 1px;
-    font-size: 0.7em;
+  margin-top: -6px;
+  font-size: 1em;
 }
 
-.purchase-percentage p {
-    text-align: center;
-    padding: 1em;
+.purchase-percentage {
+  text-align: center;
+  padding: 0.6em 1em;
 }
 
 .user-out {
-    font-size: 12px;
-    display: flex;
-    justify-content: space-evenly;
-    background-color: white;
-    border-radius: 2em;
-    margin: 1em;
-    padding: 1em;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+  border-radius: 2em;
+  margin: 1em;
+  padding: 1em;
 }
 
 .user-out button {
-    color: white;
-    border: none;
-    border-radius: 2em;
-    background-color: #A288E3;
-    width: 8em;
-    height: 3em;
+  color: white;
+  border: none;
+  border-radius: 2em;
+  background-color: #a288e3;
+  width: 8em;
+  height: 3em;
 }
 
 .done {
-    background-color: #FF9F9F;
-    color: white;
+  background-color: #ff9f9f;
+  color: white;
 }
 
 .complete-users {
-    background-color: white;
-    margin: 1em;
-    font-size: 0.8em;
+  background-color: white;
+  margin: 1em;
+  font-size: 0.8em;
 }
 
 .complete-users table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+
+  width: 100%;
 }
 
-.complete-users td, th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-  }
+.complete-users td,
+th {
+  border: 1px #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer-container {
+  display: flex;
+  background-color: white;
+  padding: 0.5em;
+  justify-content: space-evenly;
+}

@@ -1,0 +1,17 @@
+need to add:
+
+need to change:
+    channel layer = InMemoryChannelLayer
+    to be replaced by Redis and such
+
+need to change after selling:
+    clear database
+    create admin
+    admin name on admin panel, and profile picture
+    company quote on homepage
+    "why our company" and its description
+    email on footer
+    background image for all pages (hindi coffee)
+    logo
+    <title>Heins' Coffee <title>
+    

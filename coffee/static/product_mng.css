@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap");
+
+body {
+  background-color: #1f2421;
+  margin: 0;
+}
+
+.product-search {
+  display: flex;
+  margin: 0 1.5em;
+  justify-content: center;
+}
+
+.product-search input {
+  border: none;
+  border-radius: 2em;
+  height: 3em;
+  font-family: "Inder";
+  width: 20em;
+  padding-left: 2em;
+}
+
+.product-search img {
+  height: 1.5em;
+}
+
+.product-search button {
+  background: #fef5eb;
+  border: none;
+  border-radius: 2em;
+  padding: 7px;
+  width: 3em;
+}
+
+.create-product button {
+  border: none;
+  border-radius: 2em;
+  margin: 1em 1em 0;
+  padding: 1em;
+  width: 15em;
+  background-color: rgb(60, 196, 60);
+  font-family: "Inder";
+  color: white;
+}
+
+.create-product a {
+  text-decoration: none;
+}
+
+.dashboard-mng {
+  background-color: white;
+  margin: 1.3em 1em 0;
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dashboard-mng a {
+  text-decoration: none;
+}
+
+.product-itself {
+  display: flex;
+  justify-content: space-between;
+  gap: 5em;
+  background-color: #a288e3;
+  margin: 1em 0;
+  padding: 0.2em 2em;
+  color: white;
+  border-radius: 2em;
+}
+
+.product-itself p {
+  padding: 1em;
+  font-size: 13px;
+}
+
+.product-itself .buttons {
+  margin-top: 1.2em;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.product-itself .delete {
+  background-color: #ffcdcd;
+  color: black;
+  border: none;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+}
+
+.product-itself .edit {
+  background-color: #dfeeff;
+  color: black;
+  border: none;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+}

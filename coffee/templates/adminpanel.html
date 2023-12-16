@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
     <link rel="stylesheet" href="{% static 'admin.css' %}" />
+    <script src="{% static 'js/real_time.js' %}"></script>
+    <script src="{% static 'js/time_now.js' %}"></script>
   </head>
   <body>
     <div class="container">
@@ -15,12 +17,12 @@
           <div class="greetings">
             <p>
               WELCOME BACK <br />
-              <span class="name"> Heinrich Pontanoza</span>
+              <span class="name"> Your Name</span>
             </p>
           </div>
 
           <div class="image">
-            <img src="{% static 'mhyr.jpg' %}" alt="" />
+            <img src="{% static 'mikhy.jpg' %}" alt="" />
           </div>
         </div>
       </div>
@@ -48,7 +50,7 @@
 
         <div class="total-purchases">
           <div class="total-purchase">
-            <p>Total Purchase</p>
+            <p>Product Purchased</p>
           </div>
           <div class="purchase-count">
             <p>{{totalpurch}}</p>
@@ -57,10 +59,10 @@
 
         <div class="percent-purchases">
           <div class="percent-purchase">
-            <p>Purchase Percentage</p>
+            <p>Time</p>
           </div>
           <div class="purchase-percentage">
-            <p>120%</p>
+            <div style="font-size: 15px; color: beige" id="time"></div>
           </div>
         </div>
       </div>
@@ -72,7 +74,7 @@
             <div
               class="user-out {% if order.is_complete == 'YES' %} done {% endif %}"
             >
-              <p>{{order.full_name}} checked out.</p>
+              <p id="orderFullName">{{order.full_name}} checked out.</p>
               <a href="{% url 'whoordered' order.full_name %}"
                 ><button>View</button></a
               >
@@ -82,23 +84,34 @@
         {% endfor %}
       </div>
 
-      <div class="complete-users">
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Paid</th>
-            <th>Product</th>
-            <th>Date</th>
-          </tr>
-          {% for comp in completed %}
-          <tr>
-            <td>{{comp.full_name}}</td>
-            <td>{{comp.price}}</td>
-            <td>{{comp.product_name}} ({{comp.product}} x{{comp.quantity}})</td>
-            <td>{{comp.date_ordered}}</td>
-          </tr>
-          {% endfor %}
-        </table>
+      <div class="footer">
+        <div class="footer-container">
+          <div class="stats">
+            <a href="{% url 'adminPanel' %}">
+              <img
+                height="30em"
+                src="{% static 'statistics-graph-stats-analytics-business-data-svgrepo-com.svg' %}"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="receipt">
+            <a href="{% url 'receipt' %}">
+              <img
+                height="30em"
+                src="{% static 'receipt-alt-svgrepo-com.svg' %}"
+                alt=""
+            /></a>
+          </div>
+          <div class="products">
+            <a href="{% url 'productmng' %}">
+              <img
+                height="30em"
+                src="{% static 'product-o-svgrepo-com.svg' %}"
+                alt=""
+            /></a>
+          </div>
+        </div>
       </div>
     </div>
   </body>

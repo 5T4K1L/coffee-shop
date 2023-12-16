@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'coffee',
+
+    'channels',
+
+    'widget_tweaks',
+    'rest_framework',
+    'django_filters',
 ]
 
 
@@ -71,6 +78,19 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'heinscoffee.wsgi.application'
+ASGI_APPLICATION = 'heinscoffee.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+    'redis': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+    },
+}
 
 
 # Database

@@ -7,30 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout {{request.user}}</title>
     <link rel="stylesheet" href="{% static 'checkout.css' %}" />
+    <script src="{% static 'js/checkout.js' %}"></script>
   </head>
   <body>
     <div class="container">
+      <div class="background-image"></div>
+
       <form action="" method="post">
         {% csrf_token %}
         <div class="billing-address">
           <div class="fullname">
             <p>First Name</p>
-            <input name="fullname" type="text" />
+            <input id="name" name="fullname" type="text" />
           </div>
 
           <div class="contactnumber">
             <p>Contact Number</p>
-            <input name="contactnumber" type="text" />
+            <input id="contact" name="contactnumber" type="text" />
           </div>
 
           <div class="fulladdress">
             <p>Full Address</p>
-            <input type="text" name="fulladdress" />
+            <input id="address" type="text" name="fulladdress" />
           </div>
 
           <div class="message">
             <p>Message</p>
-            <input type="text" name="message" />
+            <input id="message" type="text" name="message" />
           </div>
         </div>
 
@@ -45,7 +48,8 @@
             {% endfor %}
           </ul>
           <p>Total: <span class="total">Php {{total}}</span></p>
-          <button type="submit">Checkout</button>
+          <p class="errorMessage" id="errorMessage"></p>
+          <button id="checkout" type="submit">Checkout</button>
         </div>
       </form>
     </div>

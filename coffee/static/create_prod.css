@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inder&family=Lato:wght@300&family=Pacifico&family=Playfair+Display&display=swap");
+
+body {
+  background-color: #1f2421;
+  margin: 0;
+}
+
+.container {
+  background-color: #dfdfdf;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 2em;
+  font-family: "Inder";
+  text-align: center;
+  font-size: small;
+}
+
+input {
+  border-radius: 2em;
+  border: none;
+  padding: 0.5em;
+  margin-top: 10px;
+}
+
+button {
+  border: none;
+  border-radius: 2em;
+  margin: 1em 1em 0;
+  padding: 1em;
+  width: 15em;
+  background-color: rgb(60, 196, 60);
+  font-family: "Inder";
+  color: white;
+}
